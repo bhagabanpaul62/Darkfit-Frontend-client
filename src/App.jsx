@@ -1,6 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Outlet, Route ,RouterProvider } from "react-router-dom";
 import Background from "./components/Background/Background";
-import Home from "./components/home/home";
+import Home from "./components/home/Home";
 import Heder from "./components/home/Heder";
 
 function Layout(){
