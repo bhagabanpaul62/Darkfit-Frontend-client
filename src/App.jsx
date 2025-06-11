@@ -5,10 +5,12 @@ import Heder from "./components/home/Heder";
 import Products from "./components/products/Products";
 import NoPageFound from "./components/404/NopageFaound";
 import Footer from "./components/home/Footer";
+import { Scroll } from "./components/home/Scroll";
 
 function Layout(){
   return(
     <>
+      <Scroll/>
       <Heder/>
       <Outlet/>
       <Footer/>
