@@ -29,7 +29,7 @@ function Heder() {
         setIsMobile(true);
       } else {
         setIsMobile(false);
-        setMenu(false)
+        setMenu(false);
       }
     }
     handelMobile();
@@ -42,11 +42,10 @@ function Heder() {
   }, []);
 
   const handelMenu = () => {
-    if ((isMenu == false)) {
+    if (isMenu == false) {
       setMenu(true);
-    }else{
-      setMenu(false)
-      
+    } else {
+      setMenu(false);
     }
   };
 
@@ -75,9 +74,9 @@ function Heder() {
 
         {/* Navigation Links */}
         <div
-          className={`flex gap-20 transition  duration-300 ease-in-out ${
+          className={`flex gap-20  ${
             isMenu
-              ? "flex-col w-screen h-[100vh] text-3xl  items-center transition-all  duration-300 ease-in-out bg-white absolute top-15 pt-30  "
+              ? "flex-col w-screen h-[100vh] text-2xl  items-center transition-all font-bold duration-900 ease-in-out bg-white absolute top-15 pt-30  "
               : "transition-all  duration-300 ease-in-out"
           }`}
         >
@@ -85,7 +84,7 @@ function Heder() {
             return (
               <NavLink
                 key={items.name}
-                className={`hover:text-[#ff6f6f]  transition-all  duration-300 ease-in-out ${
+                className={`hover:text-[#ff6f6f]  ${
                   isMobile
                     ? isMenu
                       ? "block"

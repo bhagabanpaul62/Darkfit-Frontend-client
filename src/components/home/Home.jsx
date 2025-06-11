@@ -1,11 +1,13 @@
 import React from 'react'
 import HeroSection from './HeroSection'
 import Heder from './Heder'
+import Products from './Products'
 function Home() {
   return (
     <div>
         <Heder/>
         <HeroSection/>
+        <Products/>
     </div>
   )
 }
