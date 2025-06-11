@@ -5,115 +5,94 @@ import { IoReorderFourSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 
 const Links = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "Products",
-    link: "/products",
-  },
-  {
-    name: "Reviews",
-    link: "/reviews",
-  },
-  {
-    name: "Contact",
-    link: "/contact",
-  },
+  { name: "Home", link: "/" },
+  { name: "Products", link: "/products" },
+  { name: "Reviews", link: "/reviews" },
+  { name: "Contact", link: "/contact" },
 ];
+
 function Heder() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
-    function handelMobile() {
-      if (window.innerWidth < 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-        setMenu(false);
-      }
-    }
-    handelMobile();
-
-    window.addEventListener("resize", handelMobile);
-
-    return () => {
-      window.removeEventListener("resize", handelMobile);
+    const handleResize = () => {
+      const isMobileNow = window.innerWidth < 768;
+      setIsMobile(isMobileNow);
+      if (!isMobileNow) setMenuOpen(false); // Close menu on desktop
     };
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handelMenu = () => {
-    if (isMenu == false) {
-      setMenu(true);
-    } else {
-      setMenu(false);
-    }
-  };
-
-  const [isMobile, setIsMobile] = useState(false);
-  const [isMenu, setMenu] = useState(false);
-  console.log(isMobile);
-
   return (
-    <div className="min-w-screen bg-white  md:text-lg font-medium text-black h-15 lg:text-xl fixed z-50 gap-10 flex justify-between shadow-md ">
-      <header className="flex justify-between w-full items-center lg:mr-20 lg:ml-20 mr-5 ml-5 py-4">
+    <div className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
+      <header className="flex justify-between items-center px-5 py-4 max-w-7xl mx-auto">
         {/* Logo */}
-        <div className=" flex justify-center items-center gap-2   transition-colors duration-300 cursor-pointer">
-          <div className="w-10 h-10">
-            <img
-              src={img}
-              className="w-10 h-10 rounded-full"
-              alt="image.jpg"
-            ></img>
-          </div>
-          <div className="text-2xl font-bold">
-            <h1>
-              <span className="text-red-500 ">D</span>arkft
-            </h1>
-          </div>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <img src={img} className="w-10 h-10 rounded-full" alt="Logo" />
+          <h1 className="text-2xl font-bold">
+            <span className="text-red-500">D</span>arkft
+          </h1>
         </div>
 
-        {/* Navigation Links */}
-        <div
-          className={`flex gap-20  ${
-            isMenu
-              ? "flex-col w-screen h-[100vh] text-2xl  items-center transition-all font-bold duration-900 ease-in-out bg-white absolute top-15 pt-30  "
-              : "transition-all  duration-300 ease-in-out"
-          }`}
-        >
-          {Links.map((items) => {
-            return (
+        {/* Desktop Nav */}
+        {!isMobile && (
+          <nav className="flex gap-10 text-lg font-medium">
+            {Links.map((item) => (
               <NavLink
-                key={items.name}
-                to={items.link}
-                className={`hover:text-[#ff6f6f]  ${
-                  isMobile
-                    ? isMenu
-                      ? "block"
-                      : " visibility: hidden "
-                    : "block"
-                } transition-all duration-600 ease-out `}
+                key={item.name}
+                to={item.link}
+                className="hover:text-[#ff6f6f] transition duration-200"
               >
-                {items.name}
+                {item.name}
               </NavLink>
-            );
-          })}
-        </div>
+            ))}
+          </nav>
+        )}
 
-        {/* Shop Now Button */}
-        <div>
+        {/* Mobile Toggle Button or CTA */}
+        <div className="flex items-center">
           {isMobile ? (
-            isMenu ? (
-              <RxCross1 className="text-3xl" onClick={handelMenu} />
+            isMenuOpen ? (
+              <RxCross1
+                className="text-3xl"
+                onClick={() => setMenuOpen(false)}
+              />
             ) : (
-              <IoReorderFourSharp className="text-3xl" onClick={handelMenu} />
+              <IoReorderFourSharp
+                className="text-3xl"
+                onClick={() => setMenuOpen(true)}
+              />
             )
           ) : (
-            <button className="bg-[#80d66b] w-30 h-10 rounded-xl hover:bg-[#b7ff80] transition-all duration-300 shadow hover:scale-105">
+            <button className="bg-[#80d66b] px-4 py-2 rounded-xl hover:bg-[#b7ff80] transition-all duration-300 shadow hover:scale-105">
               Shop Now
             </button>
           )}
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      {isMobile && isMenuOpen && (
+        <div className="flex flex-col items-center gap-6 py-10 bg-white text-xl font-semibold shadow-md">
+          {Links.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.link}
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-[#ff6f6f] transition-colors duration-200"
+            >
+              {item.name}
+            </NavLink>
+          ))}
+          <button className="bg-[#80d66b] px-4 py-2 rounded-xl hover:bg-[#b7ff80] transition-all duration-300 shadow hover:scale-105">
+            Shop Now
+          </button>
+        </div>
+      )}
     </div>
   );
 }
