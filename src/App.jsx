@@ -2,12 +2,16 @@ import { createBrowserRouter, createRoutesFromElements, Outlet, Route ,RouterPro
 import Background from "./components/Background/Background";
 import Home from "./components/home/Home";
 import Heder from "./components/home/Heder";
+import Products from "./components/products/Products";
+import NoPageFound from "./components/404/NopageFaound";
+import Footer from "./components/home/Footer";
 
 function Layout(){
   return(
     <>
       <Heder/>
       <Outlet/>
+      <Footer/>
       
     </>
   )
@@ -18,14 +22,13 @@ function App() {
 
   const Router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element = {<Layout/>}>
-        <Route index element={<Home/>}></Route>
-        <Route path="*" element={<Home/>}></Route>
-        
-
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />}></Route>
+        <Route path="/products" element={< Products />}></Route>
+        <Route path="*" element={<NoPageFound />}></Route>
       </Route>
     )
-  )
+  );
 
   return (
     <>

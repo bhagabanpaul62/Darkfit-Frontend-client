@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroSection from './HeroSection'
 import Heder from './Heder'
-import Products from './Products'
+import Products from '../products/Products'
 function Home() {
   return (
     <div>

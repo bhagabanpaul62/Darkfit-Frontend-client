@@ -84,6 +84,7 @@ function Heder() {
             return (
               <NavLink
                 key={items.name}
+                to={items.link}
                 className={`hover:text-[#ff6f6f]  ${
                   isMobile
                     ? isMenu
