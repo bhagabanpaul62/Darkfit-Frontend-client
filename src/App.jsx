@@ -10,7 +10,7 @@ import { Reviews } from "./components/review/Review";
 import Contact from "./components/contact/Contact";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContecxt";
-import Dashbord from "./components/admin/dashbord/dashbord";
+import Dashbord from "./components/admin/dashbord/dash";
 import Login from "./components/admin/login/login";
 import UploadNewProject from "./components/admin/upload_products/uploadNewProject";
 
