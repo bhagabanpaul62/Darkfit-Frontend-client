@@ -11,8 +11,8 @@ import Contact from "./components/contact/Contact";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContecxt";
 import Dashbord from "./components/admin/dashbord/dash";
-import Login from "./components/admin/login/login";
-import UploadNewProject from "./components/admin/upload_products/uploadNewProject";
+import Login from "./components/admin/login/log";
+import UploadNewProject from "./components/admin/upload_products/upNewProject";
 
 
 const AdminLayout = () => {
